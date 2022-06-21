@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton, Img } from "@chakra-ui/react";
+import { Box, Divider, Flex, IconButton, Img } from "@chakra-ui/react";
 import {RiSearchLine} from 'react-icons/ri';
 
 import { Navbar } from "./Navbar";
@@ -20,6 +20,7 @@ export function Header() {
           }}
         />
       </Flex>
+      <Divider h="1px" bg="gray.200" />
     </Box>
   );
 }

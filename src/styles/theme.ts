@@ -57,12 +57,14 @@ export const theme = extendTheme({
   },
   styles: {
     global: {
-      bg: "gray.50",
-      color: "blue.900",
-    },
-    link: {
-      decoration: "none",
-      cursor: "pointer",
+      body: {
+        bg: "gray.50",
+        color: "blue.900",
+      },
+      link: {
+        decoration: "none",
+        cursor: "pointer",
+      },
     },
   }
 })
