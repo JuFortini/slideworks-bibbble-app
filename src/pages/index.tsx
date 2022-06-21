@@ -1,4 +1,5 @@
 import { Divider, Flex } from "@chakra-ui/react"
+import Footer from "../components/Footer"
 import { Header } from "../components/Header"
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <Flex direction="column">
       <Header />
       <h1>Hello World!</h1>
+      <Footer />
     </Flex>
   )
 }

@@ -7,7 +7,7 @@ export function Header() {
   return (
     <Box h="7rem" w="100%">
       <Flex px="10rem" h="100%" align="center">
-        <Img src="logo.svg" alt="logo da Bibble" mr="15rem" />
+        <Img src="/logo.svg" alt="logo da Bibble" mr="15rem" />
         <Navbar />
         <IconButton
           aria-label="Procurar na página"
@@ -20,7 +20,7 @@ export function Header() {
           }}
         />
       </Flex>
-      <Divider h="1px" bg="gray.200" />
+      <Divider bg="gray.200" />
     </Box>
   );
 }
