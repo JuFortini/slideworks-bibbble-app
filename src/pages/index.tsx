@@ -1,9 +1,30 @@
-import { Box, Flex, SimpleGrid } from "@chakra-ui/react"
+import { Box, Flex, Image, Modal, ModalCloseButton, ModalContent, ModalOverlay, SimpleGrid, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import { format } from "date-fns"
+import parse from "date-fns/parse"
+import { GetStaticProps } from "next"
 import { BookCards } from "../components/BookCards"
 import Footer from "../components/Footer"
 import { Header } from "../components/Header"
+import { api } from "../services/api"
 
-export default function Home() {
+interface BooksProps {
+  id: number,
+  title: string,
+  author: string,
+  description: string,
+  image: string,
+  genre: string,
+  publishedAt: string,
+}
+
+interface HomeProps {
+  books: BooksProps[]
+}
+
+export default function Home({ books }: HomeProps) {
+
+  const { isOpen, onClose } = useDisclosure();
+
   return (
     <Flex direction="column">
       <Header />
@@ -13,57 +34,49 @@ export default function Home() {
           spacingY="1.5rem"
           justifyContent="space-between"
         >
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
-          <BookCards 
-            image="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-            title="Título" 
-            author="Autor"
-            description="Descrição do livro"
-            genre="Gênero"
-            publishedAt="21 Jun. 2022"
-          />
+          {books.map(book => {
+            return (
+              <BookCards
+                key={book.id} 
+                image={book.image}
+                alt={`imagem do livro ${book.title}`}
+                title={book.title} 
+                author={book.author}
+                description={book.description.substring(0, 50)}
+                genre={book.genre}
+                publishedAt={book.publishedAt}
+              />
+            )
+          })}
         </SimpleGrid>
       </Box>
       <Footer />
     </Flex>
   )
+}
+
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  const response = await api.get("/books");
+  
+  const results = response.data;
+
+  const books = results.data.map(book => {
+    return {
+      id: book.id,
+      title: book.title,
+      author: book.author,
+      description: book.description,
+      image: book.image,
+      genre: book.genre,
+      publishedAt: format(parse(book.published, 'yyyy-MM-dd', new Date()), 'dd LLL. yyyy'),
+    }
+  });
+
+  return {
+    props: {
+      books
+    }
+  }
 }

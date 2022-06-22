@@ -1,7 +1,8 @@
-import { Box, Flex, Img, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Img, Stack, Text, useDisclosure } from "@chakra-ui/react";
 
 interface BookCardsProps {
   image: string,
+  alt: string,
   title: string,
   author: string,
   description: string,
@@ -10,6 +11,9 @@ interface BookCardsProps {
 }
 
 export function BookCards({ image, title, author, description, genre, publishedAt }: BookCardsProps) {
+
+  const { onOpen} = useDisclosure();
+
   return (
     <Box 
       w="16rem" 
@@ -31,7 +35,24 @@ export function BookCards({ image, title, author, description, genre, publishedA
         <Stack spacing="0.5rem" mx="0.5rem">
           <Text>{title}</Text>
           <Text fontSize="sm" color="gray.500">{author}</Text>
-          <Text fontSize="sm" color="gray.500">{description}</Text>
+          <Flex position="relative">
+            <Text fontSize="sm" color="gray.500">{description}</Text>
+            <Button
+              position="absolute"
+              bg="gray.50"
+              bottom="0"
+              right="0"
+              fontSize="xs"
+              color="blue.500"
+              size="xs"
+              _hover={{
+                bg: "gray.50"
+              }}
+              onClick={onOpen}
+            >
+              ...more
+            </Button>
+          </Flex>
           <Flex justify="space-between" align="center">
             <Box
               fontSize="sm"
