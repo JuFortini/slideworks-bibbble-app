@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Img, Stack, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Img, Stack, Text, useColorMode, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 
 interface BookCardsProps {
   image: string,
@@ -13,6 +13,8 @@ interface BookCardsProps {
 export function BookCards({ image, title, author, description, genre, publishedAt }: BookCardsProps) {
 
   const { onOpen} = useDisclosure();
+
+  const { colorMode } = useColorMode();
 
   return (
     <Box 
@@ -39,14 +41,14 @@ export function BookCards({ image, title, author, description, genre, publishedA
             <Text fontSize="xs" color="gray.500" h="2.5rem">{description}</Text>
             <Button
               position="absolute"
-              bg="gray.50"
+              bg="inherit"
               bottom="0"
               right="0"
               fontSize="xs"
               color="blue.500"
               size="xs"
               _hover={{
-                bg: "gray.50"
+                bg: "inherit"
               }}
               onClick={onOpen}
             >
@@ -62,7 +64,7 @@ export function BookCards({ image, title, author, description, genre, publishedA
               bgGradient="linear(to-r, #A999FF, #73D5FF)"
               bgClip="border"
             >
-              <Text bg="gray.50" px="0.75rem" py="0.5rem" borderRadius="3.5px">{genre}</Text>
+              <Text bg={colorMode === "light" ? "gray.50" : "gray.900"} px="0.75rem" py="0.5rem" borderRadius="3.5px">{genre}</Text>
             </Box>
             <Text fontSize="sm" color="blue.500">{publishedAt}</Text>
           </Flex>
