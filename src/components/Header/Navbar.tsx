@@ -30,8 +30,8 @@ export function Navbar() {
               fontSize="2xl" 
               icon={icon} 
               position="absolute" 
-              right="0" 
-              mx="4rem" 
+              right="4rem" 
+               
               bg="inherit"
               cursor="pointer"
               _hover={{

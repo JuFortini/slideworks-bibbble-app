@@ -28,7 +28,13 @@ export function Header() {
       >
         <LinkBox>
           <LinkOverlay href="/">
-            <Img src="/logo.svg" bg={colorMode === "dark" ? "whiteAlpha.500" : "inherit"} borderRadius="4px" alt="logo da Bibble" p="0.5rem" mr={["0", "0", "5rem", "5rem", "15rem"]} />
+            <Img 
+              src="/logo.svg" 
+              bg={colorMode === "dark" ? "whiteAlpha.500" : "inherit"} 
+              borderRadius="4px" alt="logo da Bibble" 
+              p="0.5rem" 
+              mr={["0", "0", "5rem", "5rem", "15rem"]} 
+            />
           </LinkOverlay>
         </LinkBox>
         <Navbar />
@@ -64,6 +70,7 @@ export function Header() {
           <IconButton 
             aria-label="menu de navegação" 
             icon={<RiMenuFill />}
+            fontSize="xl"
             bg="inherit"
             _hover={{
               bg: "inherit"

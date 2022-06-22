@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Modal, ModalCloseButton, ModalContent, ModalOverlay, SimpleGrid, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import { Box, Flex, SimpleGrid } from "@chakra-ui/react"
 import { format } from "date-fns"
 import parse from "date-fns/parse"
 import { GetStaticProps } from "next"
@@ -23,10 +23,8 @@ interface HomeProps {
 
 export default function Home({ books }: HomeProps) {
 
-  const { isOpen, onClose } = useDisclosure();
-
   return (
-    <Flex direction="column">
+    <Flex direction="column" w="100%">
       <Header />
       <Box w="100%" px={["2rem", "6rem", "6rem", "6rem", "10rem"]} py="5rem">
         <SimpleGrid
@@ -42,7 +40,8 @@ export default function Home({ books }: HomeProps) {
                 alt={`imagem do livro ${book.title}`}
                 title={book.title} 
                 author={book.author}
-                description={book.description.substring(0, 50) + '...'}
+                shortDescription={book.description.substring(0, 50) + '...'}
+                fullDescription={book.description}
                 genre={book.genre}
                 publishedAt={book.publishedAt}
               />

@@ -1,16 +1,17 @@
-import { Box, Button, Flex, Img, Stack, Text, useColorMode, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Img, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Stack, Text, useColorMode, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 
 interface BookCardsProps {
   image: string,
   alt: string,
   title: string,
   author: string,
-  description: string,
+  shortDescription: string,
+  fullDescription: string,
   genre: string,
   publishedAt: string,
 }
 
-export function BookCards({ image, title, author, description, genre, publishedAt }: BookCardsProps) {
+export function BookCards({ image, title, author, shortDescription, fullDescription, genre, publishedAt }: BookCardsProps) {
 
   const { onOpen} = useDisclosure();
 
@@ -43,23 +44,34 @@ export function BookCards({ image, title, author, description, genre, publishedA
               color="gray.500"
               h="2.5rem"
             >
-              {description}
+              {shortDescription}
             </Text>
-            <Button
-              position="absolute"
-              bg="inherit"
-              bottom="0"
-              right="0"
-              fontSize="xs"
-              color="blue.500"
-              size="xs"
-              _hover={{
-                bg: "inherit"
-              }}
-              onClick={onOpen}
-            >
-              ...more
-            </Button>
+            <Popover offset={[-80, 0]}> 
+              <PopoverTrigger>
+                <Button
+                  position="absolute"
+                  bg="inherit"
+                  bottom="0"
+                  right="0"
+                  fontSize="xs"
+                  color="blue.500"
+                  size="xs"
+                  _hover={{
+                    bg: "inherit"
+                  }}
+                  onClick={onOpen}
+                >
+                  ...more
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent p="1rem" fontSize="sm" w={["280px", "280px", "360px"]}>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody>
+                  {fullDescription}
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           </Flex>
           <Flex justify="space-between" align="center">
             <Box

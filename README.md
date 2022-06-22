@@ -37,6 +37,8 @@ Para fazer a busca dos dados da api, eu utilizei o axios por ser mais simples e 
 Então, com os dados retornados e já formatados, eu fiz um .map() dentro da Home, retornando um componente bookCards para cada livro. Como eles estavam com o layout funcional, já se arranjaram conforme o tamanho da página com os espaçamentos definidos.
 - Problema: a descrição ultrapassa o limite e empurra todo o conteúdo que está abaixo dela para fora do card. Eu poderia resolver isso aumentando o tamanho do card, mas achei que ficaria desproporcional, então optei por diminuir a descrição, limitando ela por quantidade de caracteres usando o .substring pegando do caractere 0 até o 50 e colocar um botão com '...mais' para exibir o restante da descrição. Ainda não decidi como, estou pensando em um Popover (que o usuário clica neste botão e abre uma caixa de interação), um Tooltip (que mostra uma apresentação quando o usuário interage) ou um Modal com todo o card expandido.
 
+Por fim, decidi optar por um Popover, deixei essa parte para o final e foi uma das últimas coisas que eu fiz. E depois disso, o layout para mobile apresentou um espaçamento à direita que não havia antes. Eu demoraria muito tempo para imaginar o motivo disto, mas como mudou logo depois da implementação deste Popover, eu sondei o problema focando nele. Determinei uma largura para o conteúdo o Popover e isso resolveu o problema.
+
 ## Responsividade
 
 Pra essa parte, eu fiz o básico de diminuir margens e paddings de acordo com a largura da página. Com a ajuda do ChakraUI, eu posso colocar isso tudo em um array sendo o primeiro o array[0] o valor para a página no seu menor tamanho, array[1] o valor para o tamanho um pouco maior da página e assim por diante, usando esses tamanhos como padrão https://chakra-ui.com/docs/styled-system/theme#breakpoints, eu segui dessa forma, como na documentação. <br />
@@ -48,3 +50,4 @@ No Header, eu tive mais trabalho. Minha ideia, de cara, foi transformar o menu d
 
 Eu quis incluir um dark mode, espero que não se importem, acho legal e menos agressivo aos olhos. Desculpem se o design não ficou nas melhores cores. <br />
 Para fazer o dark mode foi bem simples com o ChakraUI e não tive muito problema, ele fornece ferramentas bem práticas e a documentação é bem completa para esse aspecto, podem ver aqui https://chakra-ui.com/docs/styled-system/color-mode.
+
