@@ -36,7 +36,7 @@ export function BookCards({ image, title, author, description, genre, publishedA
           <Text>{title}</Text>
           <Text fontSize="sm" color="gray.500">{author}</Text>
           <Flex position="relative">
-            <Text fontSize="sm" color="gray.500">{description}</Text>
+            <Text fontSize="xs" color="gray.500" h="2.5rem">{description}</Text>
             <Button
               position="absolute"
               bg="gray.50"

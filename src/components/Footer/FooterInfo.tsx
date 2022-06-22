@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function FooterInfo() {
   return (
-    <HStack spacing="2.5rem" color="gray.50" fontFamily="DM Sans">
+    <HStack spacing="2.5rem" color="gray.50" fontFamily="DM Sans" mb={["2rem", "2rem", "2rem", "0"]}>
       <Link href="http://google.com">
         <Text>Terms &amp; Conditions</Text>
       </Link>

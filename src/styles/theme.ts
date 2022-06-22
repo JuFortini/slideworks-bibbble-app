@@ -1,6 +1,12 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+
+const config: ThemeConfig = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+};
 
 export const theme = extendTheme({
+  config,
   colors: {
     gray: {
       "900": "#262626",
@@ -56,15 +62,15 @@ export const theme = extendTheme({
     body: "Inter",
   },
   styles: {
-    global: {
+    global: (props) => ({
       body: {
-        bg: "gray.50",
-        color: "blue.900",
+        bg: props.colorMode === "dark" ? "whiteAlpha.100" : "gray.50",
+        color: props.colorMode === "dark" ? "gray.50" : "blue.900",
       },
       link: {
         decoration: "none",
         cursor: "pointer",
       },
-    },
-  }
+    }),
+  },
 })

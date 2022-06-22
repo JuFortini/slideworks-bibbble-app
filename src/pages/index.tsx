@@ -28,11 +28,11 @@ export default function Home({ books }: HomeProps) {
   return (
     <Flex direction="column">
       <Header />
-      <Box w="100%" px="10rem" py="5rem">
+      <Box w="100%" px={["2rem", "6rem", "6rem", "6rem", "10rem"]} py="5rem">
         <SimpleGrid
           templateColumns="repeat(auto-fit, minmax(16rem, 16rem))"
           spacingY="1.5rem"
-          justifyContent="space-between"
+          justifyContent={["center", "center", "space-between"]}
         >
           {books.map(book => {
             return (
