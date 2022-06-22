@@ -42,7 +42,7 @@ export default function Home({ books }: HomeProps) {
                 alt={`imagem do livro ${book.title}`}
                 title={book.title} 
                 author={book.author}
-                description={book.description.substring(0, 50)}
+                description={book.description.substring(0, 50) + '...'}
                 genre={book.genre}
                 publishedAt={book.publishedAt}
               />

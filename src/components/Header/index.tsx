@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, IconButton, Img, useBreakpointValue, useColorMode } from "@chakra-ui/react";
+import { Box, Divider, Flex, IconButton, Img, LinkBox, LinkOverlay, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 import { useContext } from "react";
 import {RiMenuFill, RiSearchLine} from 'react-icons/ri';
 import { ColorModeButtonContext } from "../../contexts/ColorModeContext";
@@ -16,7 +16,7 @@ export function Header() {
   const { onOpen } = useDrawerContext();
 
   const { icon } = useContext(ColorModeButtonContext);
-  const { toggleColorMode } = useColorMode();
+  const { toggleColorMode, colorMode } = useColorMode();
 
   return (
     <Box h="7rem" w="100%">
@@ -26,7 +26,11 @@ export function Header() {
         align="center" 
         justify={["space-between", "space-between", "space-between", "space-between", "normal"]}
       >
-        <Img src="/logo.svg" bg="gray.50" borderRadius="4px" alt="logo da Bibble" p="0.5rem" mr={["0", "0", "5rem", "5rem", "15rem"]} />
+        <LinkBox>
+          <LinkOverlay href="/">
+            <Img src="/logo.svg" bg={colorMode === "dark" ? "whiteAlpha.500" : "inherit"} borderRadius="4px" alt="logo da Bibble" p="0.5rem" mr={["0", "0", "5rem", "5rem", "15rem"]} />
+          </LinkOverlay>
+        </LinkBox>
         <Navbar />
         { isLargeWindow &&
           <>
